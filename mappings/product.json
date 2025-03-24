@@ -1,0 +1,89 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/api/products"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "products/all_products.json"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/products/search",
+        "queryParameters": {
+          "query": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "products/search_results.json"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/api/products/categories"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\"categories\": [\"Electronics\", \"Clothing\", \"Books\", \"Home & Kitchen\"]}"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "urlPattern": "/api/products/\\d+"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "products/product_details.json"
+      },
+      "priority": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/api/products/999"
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{\"error\": \"Product not found\"}"
+      },
+      "priority": 2
+    },
+    {
+      "request": {
+        "method": "GET",
+        "urlPattern": "/api/products/\\d+/reviews"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyFileName": "products/product_reviews.json"
+      }
+    }
+  ]
+}
